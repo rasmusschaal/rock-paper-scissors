@@ -26,12 +26,32 @@ function genReply() {
     }
 }
 
-function checkWinner (play1, play2) {
 
+function checkWinner (playerOne, playerTwo) {
+    if ( playerOne == "rock" && playerTwo == "scissors") {
+        return true;
+    } else if (playerOne == "scissors" && playerTwo == "paper") {
+        return true;
+    } else if (playerOne == "paper" && playerTwo == "rock") {
+        return true;
+    } else if (playerOne == "rock" && playerTwo == "paper") {
+        return false;
+    } else if (playerOne == "paper" && playerTwo == "scissors") {
+        return false;
+    } else if (playerOne == "scissors" && playerTwo == "rock") {
+        return false;
+    }
 }
 
 //GET INPUT FOR ANSWER
+let computerSign = genReply();
 let sign;
-while (checkAnswer(sign) == false) {
-    sign = prompt("Please enter your answer:").toLowerCase();
+while (checkAnswer(sign) == false || sign == computerSign) {
+    sign = prompt("Rock, paper, scissors?").toLowerCase();
+}
+
+if (checkWinner(sign, computerSign) == true) {
+    console.log("You won! You picked " + sign + " and the computer picked " + computerSign + "!");
+} else {
+    console.log("You lost! You picked " + sign + " but the computer picked " + computerSign + "!");
 }
